@@ -109,14 +109,6 @@ For an e-commerce platform, the model can support:
 - Review text was explored through word clouds, but deeper sentiment analysis was not fully integrated into the predictive model.
 - Some engineered features may interact in ways that simple correlation analysis does not fully capture.
 
-## Next Steps
-
-- Add SHAP or permutation importance to explain model predictions more clearly.
-- Integrate review-text sentiment features into the modelling dataset.
-- Build a dashboard for monitoring review-risk patterns by seller, region, and delivery performance.
-- Test additional feature interactions, especially between delivery time, distance, freight value, and seller behavior.
-- Design a retraining and monitoring process so model performance can adapt as customer behavior changes.
-
 ## Tech Stack
 
 - Python

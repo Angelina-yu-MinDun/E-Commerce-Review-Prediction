@@ -34,7 +34,7 @@ How can an e-commerce platform use order, logistics, payment, seller, customer, 
 │   ├── olist_geolocation_dataset_2.0.csv
 │   └── olist_order_reviews_dataset_translation.csv
 ├── planning/
-│   └── AIP_kickoff_mindmap.xmind
+│   └── Kickoff_mindmap.xmind
 ├── brazilian_ecommerce_review_prediction_report.pdf
 ├── brazilian_ecommerce_review_prediction_presentation.pdf
 ├── DATA_AND_FILE_NOTES.md
@@ -94,9 +94,3 @@ For an e-commerce platform, the model can support:
 - XGBoost
 - matplotlib / seaborn
 - Jupyter Notebook
-
-## Portfolio Notes
-
-This repository is prepared from a group assignment copy. The original academic files are preserved separately. Portfolio edits should be made only in this copied folder.
-
-Large CSV files are included in the local portfolio copy for reproducibility, but should normally be excluded from a public GitHub repository unless a data-sharing decision has been made.

@@ -74,7 +74,7 @@ The cleaned dataset was imbalanced, with approximately 78% positive reviews and 
 
 The modelling stage compared five configurations across Random Forest, Gradient Boosting, and XGBoost using SMOTE and class-weight strategies for imbalance handling.
 
-The selected communication focus was **Random Forest with class weighting**, because it performed strongly for identifying likely positive reviewers. In the presentation artifact, the model is summarized by its positive-class precision:
+The selected communication focus was **Random Forest with class weighting**, because it performed strongly for identifying likely positive reviewers. The model is summarized by its positive-class precision:
 
 - Positive-class precision: 82%
 

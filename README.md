@@ -8,6 +8,22 @@ This portfolio version reframes the project as an end-to-end data analytics case
 
 How can an e-commerce platform use order, logistics, payment, seller, customer, and review data to understand the drivers of customer satisfaction and predict low-review-risk orders?
 
+## Data Context
+
+The project uses Brazilian e-commerce marketplace data covering customers, sellers, orders, order items, payments, products, reviews, and geolocation. The original dataset contained roughly:
+
+- 3,095 sellers
+- 89,322 customers
+- 99,441 orders
+- 96,096 reviews
+
+After cleaning, merging, and feature preparation, the modelling dataset contained approximately 82,000 usable records. Review scores were converted into a binary target:
+
+- Positive review: 4-5 stars
+- Negative review: 1-3 stars
+
+The cleaned dataset was imbalanced, with approximately 78% positive reviews and 22% negative reviews.
+
 ## Project Highlights
 
 - Built a multi-table analytical dataset from customer, order, payment, review, seller, product, and geolocation sources.
@@ -28,9 +44,13 @@ How can an e-commerce platform use order, logistics, payment, seller, customer, 
 │   ├── Step.4_Feature correlation.ipynb
 │   ├── Step.5_Modelling and Evaluation.ipynb
 │   └── Appendix_WordCloud.ipynb
+├── ecommerce_review_prediction_presentation.pdf
 ├── planning/
-    └── AIP_kickoff_mindmap.pdf
+│   └── Kick off planning.pdf
+└── README.md
 ```
+
+Large processed CSV files and the full academic report are intentionally excluded from this public repository. The presentation is included as a communication artifact from the academic project, while the README and notebooks provide the portfolio-facing technical narrative.
 
 ## Methodology
 
@@ -54,18 +74,26 @@ How can an e-commerce platform use order, logistics, payment, seller, customer, 
 
 ## Model Results
 
-The final evaluation focused on balancing predictive performance with minority-class detection. After tuning Random Forest with class weighting, the model achieved:
+The modelling stage compared five configurations across Random Forest, Gradient Boosting, and XGBoost using SMOTE and class-weight strategies for imbalance handling.
+
+The selected communication focus was **Random Forest with class weighting**, because it performed strongly for identifying likely positive reviewers. In the presentation artifact, the model is summarized by its positive-class precision:
+
+- Positive-class precision: 82%
+
+Hyperparameter tuning improved balance between the positive and negative classes, but introduced a trade-off: the tuned model detected more negative-review cases while missing more positive-review cases. For the business objective of targeting customers likely to leave positive reviews, the class-weighted Random Forest before tuning aligned well with the prototype goal.
+
+The tuned class-weighted Random Forest achieved:
 
 - Accuracy: 0.74
 - Macro precision: 0.64
 - Macro recall: 0.67
 - Macro F1-score: 0.65
 
-Earlier model comparisons showed that several models achieved higher overall accuracy, but the tuned class-weighted Random Forest provided a more balanced treatment of positive and negative review classes.
+This distinction matters because overall accuracy alone is not sufficient for an imbalanced dataset. Model selection depends on whether the business goal prioritizes targeting likely positive reviewers or detecting negative-review risk.
 
 ## Business Interpretation
 
-The analysis suggests that customer review outcomes are strongly connected to logistics and fulfillment experience. Features such as delivery timeliness, waiting time, distance between seller and customer, and freight/payment context are useful signals for identifying orders at risk of poor customer satisfaction.
+The analysis suggests that customer review outcomes are strongly connected to logistics and fulfillment experience. Features such as delivery timeliness, waiting time, estimated vs. actual delivery accuracy, distance between seller and customer, and freight/payment context are useful signals for identifying review satisfaction patterns.
 
 For an e-commerce platform, the model can support:
 
@@ -74,6 +102,22 @@ For an e-commerce platform, the model can support:
 - Customer service prioritization.
 - Delivery experience dashboard design.
 - Post-purchase retention analysis.
+
+## Limitations
+
+- The dataset is heavily skewed toward positive reviews, so imbalance handling is central to model interpretation.
+- The data covers 2016-2018, which limits the model's ability to capture more recent customer behavior and market changes.
+- Review score is treated as the target measure of customer sentiment, but customer experience is more nuanced than a numeric star rating.
+- Review text was explored through word clouds, but deeper sentiment analysis was not fully integrated into the predictive model.
+- Some engineered features may interact in ways that simple correlation analysis does not fully capture.
+
+## Next Steps
+
+- Add SHAP or permutation importance to explain model predictions more clearly.
+- Integrate review-text sentiment features into the modelling dataset.
+- Build a dashboard for monitoring review-risk patterns by seller, region, and delivery performance.
+- Test additional feature interactions, especially between delivery time, distance, freight value, and seller behavior.
+- Design a retraining and monitoring process so model performance can adapt as customer behavior changes.
 
 ## Tech Stack
 
